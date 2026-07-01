@@ -263,22 +263,53 @@ h2 {
   padding: 14px;
 }
 
-.countdown-panel strong {
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.countdown-grid span {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  border: 2px solid rgba(240, 184, 75, 0.48);
+  background: rgba(0, 0, 0, 0.28);
+  padding: 9px 5px;
+  text-align: center;
+}
+
+.countdown-grid strong {
   display: block;
-  margin: 8px 0;
   color: var(--gold);
   font-family: "Press Start 2P", monospace;
-  font-size: clamp(1rem, 4vw, 1.8rem);
+  font-size: clamp(0.8rem, 3.3vw, 1.35rem);
   line-height: 1.35;
   text-shadow:
-    3px 3px 0 #5b1d17,
-    5px 5px 0 var(--shadow);
+    2px 2px 0 #5b1d17,
+    4px 4px 0 var(--shadow);
+}
+
+.countdown-grid small {
+  color: var(--muted);
+  font-size: clamp(0.58rem, 2.3vw, 0.78rem);
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .countdown-panel small {
   display: block;
   color: var(--muted);
   font-weight: 900;
+}
+
+.countdown-panel.unlocked .countdown-grid {
+  grid-template-columns: 1fr;
+}
+
+.countdown-panel.unlocked .countdown-grid span {
+  padding: 12px 8px;
 }
 
 .primary-btn:active,

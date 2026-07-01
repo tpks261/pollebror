@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260701-countdown-fix">
   </head>
   <body>
     <main class="game-shell">
@@ -40,7 +40,12 @@
         </p>
         <div class="countdown-panel" id="countdownPanel" aria-live="polite">
           <span class="label">Portalen åbner</span>
-          <strong id="countdownTime">--d --t --m --s</strong>
+          <div class="countdown-grid" id="countdownTime">
+            <span><strong>--</strong><small>dage</small></span>
+            <span><strong>--</strong><small>timer</small></span>
+            <span><strong>--</strong><small>min</small></span>
+            <span><strong>--</strong><small>sek</small></span>
+          </div>
           <small>Lørdag d. 4/7 kl. 15.00</small>
         </div>
         <button class="primary-btn" id="startButton" type="button" disabled>Quest låst</button>
@@ -104,6 +109,6 @@
     </main>
 
     <canvas id="confettiCanvas" aria-hidden="true"></canvas>
-    <script src="script.js"></script>
+    <script src="script.js?v=20260701-countdown-fix"></script>
   </body>
 </html>

@@ -19,7 +19,7 @@ const confettiContext = confettiCanvas.getContext("2d");
 const startButton = document.querySelector("#startButton");
 const countdownTime = document.querySelector("#countdownTime");
 const countdownPanel = document.querySelector("#countdownPanel");
-const unlockAt = new Date("2026-07-04T15:00:00+02:00");
+const unlockAt = new Date(2026, 6, 4, 15, 0, 0);
 
 let collectedMana = 0;
 let activeMana = 0;
@@ -59,7 +59,8 @@ function updateCountdown() {
   const millisecondsLeft = unlockAt - now;
 
   if (millisecondsLeft <= 0) {
-    countdownTime.textContent = "Portalen er åben";
+    countdownPanel.classList.add("unlocked");
+    countdownTime.innerHTML = "<span><strong>Åben</strong><small>nu</small></span>";
     countdownPanel.querySelector("small").textContent = "Quest unlocked. Tryk start, pøllebror.";
     startButton.disabled = false;
     startButton.textContent = "Start quest";
@@ -73,7 +74,13 @@ function updateCountdown() {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  countdownTime.textContent = `${days}d ${hours}t ${minutes}m ${seconds}s`;
+  countdownPanel.classList.remove("unlocked");
+  countdownTime.innerHTML = `
+    <span><strong>${days}</strong><small>dage</small></span>
+    <span><strong>${hours}</strong><small>timer</small></span>
+    <span><strong>${minutes}</strong><small>min</small></span>
+    <span><strong>${seconds}</strong><small>sek</small></span>
+  `;
   startButton.disabled = true;
   startButton.textContent = "Quest låst";
 }
