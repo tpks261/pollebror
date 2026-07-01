@@ -1,16 +1,20 @@
 :root {
   color-scheme: dark;
-  --bg: #101018;
-  --panel: #1a2030;
-  --panel-2: #24243a;
-  --text: #fff7d6;
-  --muted: #c6bed9;
-  --hot: #ff4f8b;
-  --gold: #ffd166;
-  --mint: #4ee6a8;
-  --cyan: #49c6ff;
-  --danger: #ff6b57;
-  --shadow: #08080e;
+  --bg: #07080b;
+  --stone: #151923;
+  --stone-2: #252a35;
+  --stone-3: #353a43;
+  --iron: #9ba7b6;
+  --iron-dark: #4d5562;
+  --text: #fff0bf;
+  --muted: #d2bfa1;
+  --ember: #d7472f;
+  --ember-bright: #ff7a33;
+  --gold: #f0b84b;
+  --gold-dark: #8d5b1c;
+  --magic: #46d7c4;
+  --violet: #402b67;
+  --shadow: #030406;
 }
 
 * {
@@ -27,10 +31,10 @@ body {
   font-family: Inter, system-ui, sans-serif;
   color: var(--text);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    radial-gradient(circle at 50% 0%, #30304a 0, var(--bg) 48rem);
-  background-size: 18px 18px, 18px 18px, auto;
+    linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(315deg, rgba(255, 255, 255, 0.04) 25%, transparent 25%) 0 0 / 24px 24px,
+    radial-gradient(circle at 50% 12%, #311b24 0 10rem, transparent 30rem),
+    linear-gradient(180deg, #10151f 0%, var(--bg) 70%);
   display: grid;
   place-items: center;
   padding: 16px;
@@ -43,6 +47,7 @@ input {
 
 .game-shell {
   width: min(100%, 760px);
+  filter: drop-shadow(0 18px 0 rgba(0, 0, 0, 0.55));
 }
 
 .topbar {
@@ -54,14 +59,33 @@ input {
 
 .topbar > div,
 .screen {
-  border: 3px solid var(--text);
-  background: linear-gradient(180deg, var(--panel), var(--panel-2));
-  box-shadow: 0 8px 0 var(--shadow);
+  border: 4px solid var(--iron);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 16px 16px,
+    linear-gradient(180deg, var(--stone-2), var(--stone));
+  box-shadow:
+    inset 0 0 0 4px var(--iron-dark),
+    inset 0 0 0 8px rgba(0, 0, 0, 0.38),
+    0 8px 0 var(--shadow);
 }
 
 .topbar > div {
   padding: 10px;
   min-width: 0;
+  position: relative;
+}
+
+.topbar > div::before,
+.screen::before,
+.screen::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.topbar > div::before {
+  inset: 4px;
+  border: 1px solid rgba(240, 184, 75, 0.28);
 }
 
 .label,
@@ -72,7 +96,8 @@ input {
   font-family: "Press Start 2P", monospace;
   font-size: clamp(0.48rem, 1.8vw, 0.7rem);
   line-height: 1.6;
-  color: var(--mint);
+  color: var(--magic);
+  text-shadow: 2px 2px 0 #052320;
   text-transform: uppercase;
 }
 
@@ -89,22 +114,86 @@ input {
   overflow: hidden;
 }
 
+.screen::before {
+  inset: 10px;
+  border: 2px solid rgba(240, 184, 75, 0.48);
+}
+
+.screen::after {
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 18px, rgba(255, 122, 51, 0.2) 18px 22px, transparent 22px calc(100% - 22px), rgba(255, 122, 51, 0.2) calc(100% - 22px) calc(100% - 18px), transparent calc(100% - 18px)),
+    linear-gradient(180deg, rgba(255, 240, 191, 0.08), transparent 38%, rgba(0, 0, 0, 0.28));
+  mix-blend-mode: screen;
+}
+
+.screen > * {
+  position: relative;
+  z-index: 1;
+}
+
 .hidden {
   display: none;
 }
 
-.pixel-orb {
-  width: min(44vw, 180px);
-  aspect-ratio: 1;
-  margin: 0 auto 18px;
+.hero-sigil {
+  width: min(100%, 320px);
+  height: 112px;
+  margin: 0 auto 22px;
+  position: relative;
+  isolation: isolate;
+  border: 5px solid var(--iron);
   background:
-    linear-gradient(90deg, transparent 12%, var(--gold) 12% 25%, transparent 25% 75%, var(--hot) 75% 88%, transparent 88%),
-    linear-gradient(transparent 12%, var(--cyan) 12% 25%, transparent 25% 75%, var(--mint) 75% 88%, transparent 88%),
-    #35285f;
-  image-rendering: pixelated;
-  border: 6px solid var(--text);
-  box-shadow: 0 0 0 6px #111, 0 12px 0 var(--shadow);
-  transform: rotate(45deg);
+    linear-gradient(90deg, transparent 0 18%, rgba(70, 215, 196, 0.18) 18% 22%, transparent 22% 78%, rgba(70, 215, 196, 0.18) 78% 82%, transparent 82%),
+    linear-gradient(135deg, var(--violet), #15101d 62%);
+  box-shadow:
+    inset 0 0 0 5px var(--shadow),
+    inset 0 0 0 9px var(--gold-dark),
+    0 10px 0 var(--shadow);
+}
+
+.hero-sigil::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 2px solid rgba(240, 184, 75, 0.55);
+  z-index: 0;
+}
+
+.sword-blade,
+.sword-hilt,
+.sword-grip {
+  position: absolute;
+  left: 50%;
+  display: block;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.sword-blade {
+  top: 12px;
+  width: 28px;
+  height: 68px;
+  background:
+    linear-gradient(90deg, #9ca9ba 0 28%, #ffffff 28% 52%, #cfd8e6 52%);
+  clip-path: polygon(50% 0, 100% 16%, 68% 100%, 32% 100%, 0 16%);
+  box-shadow:
+    0 0 0 3px #202631,
+    0 0 18px rgba(70, 215, 196, 0.72);
+}
+
+.sword-hilt {
+  top: 66px;
+  width: 96px;
+  height: 14px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-dark));
+}
+
+.sword-grip {
+  top: 74px;
+  width: 18px;
+  height: 28px;
+  background: linear-gradient(90deg, #2b1420, var(--ember), #2b1420);
 }
 
 h1,
@@ -113,6 +202,10 @@ h2 {
   line-height: 1.25;
   letter-spacing: 0;
   margin: 0 0 18px;
+  color: var(--gold);
+  text-shadow:
+    3px 3px 0 #5b1d17,
+    6px 6px 0 var(--shadow);
 }
 
 h1 {
@@ -130,15 +223,19 @@ h2 {
   font-size: clamp(1rem, 2.5vw, 1.18rem);
   line-height: 1.55;
   max-width: 58ch;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .primary-btn,
 .spell {
   min-height: 50px;
-  border: 3px solid var(--text);
-  color: #17121f;
-  background: var(--gold);
-  box-shadow: 0 6px 0 var(--shadow);
+  border: 4px solid var(--iron);
+  color: #1b0f0b;
+  background:
+    linear-gradient(180deg, #ffd983, var(--gold) 46%, #b96e24 47%, #8a381d);
+  box-shadow:
+    inset 0 0 0 2px #4a2416,
+    0 6px 0 var(--shadow);
   padding: 12px 18px;
   font-weight: 900;
   text-transform: uppercase;
@@ -161,10 +258,14 @@ h2 {
 
 .mana-card {
   aspect-ratio: 1;
-  border: 3px solid var(--text);
-  background: #2d2442;
+  border: 4px solid var(--iron);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0 20%, transparent 20%),
+    linear-gradient(180deg, #292035, #121722);
   color: var(--text);
-  box-shadow: 0 6px 0 var(--shadow);
+  box-shadow:
+    inset 0 0 0 3px var(--shadow),
+    0 6px 0 var(--shadow);
   display: grid;
   place-items: center;
   font-size: clamp(1.8rem, 10vw, 3.8rem);
@@ -172,8 +273,14 @@ h2 {
 }
 
 .mana-card.active {
-  background: var(--mint);
+  background:
+    radial-gradient(circle, #fff3c2 0 18%, transparent 19%),
+    linear-gradient(180deg, var(--magic), #166c68);
   color: #102018;
+  box-shadow:
+    inset 0 0 0 3px #083330,
+    0 0 18px rgba(70, 215, 196, 0.72),
+    0 6px 0 var(--shadow);
 }
 
 .code-form {
@@ -189,12 +296,13 @@ h2 {
 
 .code-form input {
   min-height: 58px;
-  border: 3px solid var(--text);
-  background: #0d0d15;
+  border: 4px solid var(--iron);
+  background: #090b10;
   color: var(--gold);
   padding: 8px 12px;
   font-family: "Press Start 2P", monospace;
   font-size: 1.35rem;
+  box-shadow: inset 0 0 0 3px var(--shadow);
 }
 
 .boss-area {
@@ -206,16 +314,29 @@ h2 {
 .boss-card,
 .ticket {
   width: min(100%, 360px);
-  border: 3px solid var(--text);
-  background: #301d3d;
-  box-shadow: 0 8px 0 var(--shadow);
+  border: 5px solid var(--iron);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 18%, transparent 18%),
+    linear-gradient(180deg, #4a1e23, #16141c);
+  box-shadow:
+    inset 0 0 0 4px var(--shadow),
+    inset 0 0 0 8px rgba(215, 71, 47, 0.22),
+    0 8px 0 var(--shadow);
   padding: 18px;
   text-align: center;
 }
 
-.boss-emoji {
+.boss-mark {
   display: block;
-  font-size: 3rem;
+  width: max-content;
+  margin: 0 auto;
+  padding: 8px 10px;
+  border: 3px solid var(--gold);
+  color: var(--ember-bright);
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.7rem, 3vw, 1rem);
+  background: #0a0b0f;
+  text-shadow: 2px 2px 0 #4b1510;
 }
 
 .boss-card strong,
@@ -231,14 +352,15 @@ h2 {
 }
 
 .spell {
-  background: var(--cyan);
+  background:
+    linear-gradient(180deg, #89fff0, var(--magic) 46%, #16766f 47%, #0d3a38);
   min-width: 0;
   font-size: clamp(0.75rem, 2.2vw, 1rem);
 }
 
 .spell.used {
-  background: #5c5a6d;
-  color: #d7d0dd;
+  background: linear-gradient(180deg, #6f7480, #343944);
+  color: #d7d0bd;
   cursor: default;
 }
 
@@ -254,9 +376,9 @@ h2 {
 .ticket {
   margin: 0 auto 24px;
   background:
-    linear-gradient(90deg, transparent 0 8%, rgba(255, 255, 255, 0.14) 8% 9%, transparent 9% 91%, rgba(255, 255, 255, 0.14) 91% 92%, transparent 92%),
-    linear-gradient(135deg, var(--hot), var(--gold));
-  color: #17121f;
+    linear-gradient(90deg, transparent 0 8%, rgba(255, 240, 191, 0.24) 8% 9%, transparent 9% 91%, rgba(255, 240, 191, 0.24) 91% 92%, transparent 92%),
+    linear-gradient(135deg, #2b1114, var(--ember) 46%, var(--gold) 47%, #f6d282);
+  color: #1a0c08;
 }
 
 .ticket strong {
