@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pøllebrors 35-års Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="topbar" aria-label="Spilstatus">
+        <div>
+          <span class="label">Quest</span>
+          <strong>Pøllebror 35</strong>
+        </div>
+        <div>
+          <span class="label">Mana</span>
+          <strong id="manaCount">0/5</strong>
+        </div>
+        <div>
+          <span class="label">Stage</span>
+          <strong id="stageCount">1/3</strong>
+        </div>
+      </section>
+
+      <section class="screen" id="startScreen">
+        <div class="pixel-orb" aria-hidden="true"></div>
+        <p class="kicker">Retro birthday quest</p>
+        <h1>Pøllebrors 35-års Quest</h1>
+        <p class="intro">
+          En mystisk gave er blevet låst bag tre prøver. Saml mana, knæk runerne,
+          og besejr den sidste boss før fødselsdagsportalen åbner.
+        </p>
+        <button class="primary-btn" id="startButton" type="button">Start quest</button>
+      </section>
+
+      <section class="screen hidden" id="manaScreen">
+        <p class="kicker">Stage 1</p>
+        <h2>Saml 5 mana</h2>
+        <p class="task-text">Tryk på de lysende mana-kort, før de skifter plads.</p>
+        <div class="mana-grid" id="manaGrid" aria-label="Mana-kort"></div>
+      </section>
+
+      <section class="screen hidden" id="runeScreen">
+        <p class="kicker">Stage 2</p>
+        <h2>Knæk fødselsdagsrunen</h2>
+        <p class="task-text">
+          Den gamle arkademager kræver alderen som kode. Hvilket tal åbner porten?
+        </p>
+        <form class="code-form" id="codeForm">
+          <label for="codeInput">Kode</label>
+          <input id="codeInput" name="code" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="??">
+          <button class="primary-btn" type="submit">Åbn rune</button>
+        </form>
+        <p class="feedback" id="codeFeedback" role="status"></p>
+      </section>
+
+      <section class="screen hidden" id="duelScreen">
+        <p class="kicker">Stage 3</p>
+        <h2>Duel mod Voksenansvar</h2>
+        <p class="task-text">Vælg tre spells og få bossens liv ned på nul.</p>
+        <div class="boss-area">
+          <div class="boss-card" aria-label="Boss">
+            <span class="boss-emoji" aria-hidden="true">☠</span>
+            <strong>Voksenansvar</strong>
+            <span id="bossHp">12 HP</span>
+          </div>
+        </div>
+        <div class="spell-row">
+          <button class="spell" type="button" data-damage="4">Kaffe Bolt</button>
+          <button class="spell" type="button" data-damage="5">Fredags Fireball</button>
+          <button class="spell" type="button" data-damage="3">Nap Shield</button>
+        </div>
+        <p class="feedback" id="duelFeedback" role="status"></p>
+      </section>
+
+      <section class="screen hidden finale" id="finalScreen">
+        <div class="ticket" aria-label="Koncertbilletter">
+          <span>Admit two</span>
+          <strong>Koncertbilletter</strong>
+          <small>Unlocked for pøllebror</small>
+        </div>
+        <p class="kicker">Quest complete</p>
+        <h2>Tillykke med de 35 år!</h2>
+        <p class="intro">
+          Du har samlet mana, knækket runerne og besejret Voksenansvar.
+          Din gave er koncertbilletter. Nu skal vi bare ud og høre noget høj musik.
+        </p>
+        <button class="primary-btn" id="restartButton" type="button">Spil igen</button>
+      </section>
+    </main>
+
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <script src="script.js"></script>
+  </body>
+</html>

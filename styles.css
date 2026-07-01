@@ -1,0 +1,299 @@
+:root {
+  color-scheme: dark;
+  --bg: #101018;
+  --panel: #1a2030;
+  --panel-2: #24243a;
+  --text: #fff7d6;
+  --muted: #c6bed9;
+  --hot: #ff4f8b;
+  --gold: #ffd166;
+  --mint: #4ee6a8;
+  --cyan: #49c6ff;
+  --danger: #ff6b57;
+  --shadow: #08080e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, #30304a 0, var(--bg) 48rem);
+  background-size: 18px 18px, 18px 18px, auto;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.game-shell {
+  width: min(100%, 760px);
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.topbar > div,
+.screen {
+  border: 3px solid var(--text);
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  box-shadow: 0 8px 0 var(--shadow);
+}
+
+.topbar > div {
+  padding: 10px;
+  min-width: 0;
+}
+
+.label,
+.kicker,
+.ticket span,
+.ticket small {
+  display: block;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(0.48rem, 1.8vw, 0.7rem);
+  line-height: 1.6;
+  color: var(--mint);
+  text-transform: uppercase;
+}
+
+.topbar strong {
+  display: block;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.screen {
+  position: relative;
+  min-height: min(72vh, 620px);
+  padding: clamp(18px, 5vw, 44px);
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.pixel-orb {
+  width: min(44vw, 180px);
+  aspect-ratio: 1;
+  margin: 0 auto 18px;
+  background:
+    linear-gradient(90deg, transparent 12%, var(--gold) 12% 25%, transparent 25% 75%, var(--hot) 75% 88%, transparent 88%),
+    linear-gradient(transparent 12%, var(--cyan) 12% 25%, transparent 25% 75%, var(--mint) 75% 88%, transparent 88%),
+    #35285f;
+  image-rendering: pixelated;
+  border: 6px solid var(--text);
+  box-shadow: 0 0 0 6px #111, 0 12px 0 var(--shadow);
+  transform: rotate(45deg);
+}
+
+h1,
+h2 {
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.25;
+  letter-spacing: 0;
+  margin: 0 0 18px;
+}
+
+h1 {
+  font-size: clamp(1.55rem, 6vw, 3.5rem);
+}
+
+h2 {
+  font-size: clamp(1.15rem, 4.5vw, 2.25rem);
+}
+
+.intro,
+.task-text,
+.feedback {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.18rem);
+  line-height: 1.55;
+  max-width: 58ch;
+}
+
+.primary-btn,
+.spell {
+  min-height: 50px;
+  border: 3px solid var(--text);
+  color: #17121f;
+  background: var(--gold);
+  box-shadow: 0 6px 0 var(--shadow);
+  padding: 12px 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.primary-btn:active,
+.spell:active,
+.mana-card:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--shadow);
+}
+
+.mana-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.mana-card {
+  aspect-ratio: 1;
+  border: 3px solid var(--text);
+  background: #2d2442;
+  color: var(--text);
+  box-shadow: 0 6px 0 var(--shadow);
+  display: grid;
+  place-items: center;
+  font-size: clamp(1.8rem, 10vw, 3.8rem);
+  cursor: pointer;
+}
+
+.mana-card.active {
+  background: var(--mint);
+  color: #102018;
+}
+
+.code-form {
+  display: grid;
+  gap: 12px;
+  max-width: 360px;
+  margin-top: 20px;
+}
+
+.code-form label {
+  font-weight: 900;
+}
+
+.code-form input {
+  min-height: 58px;
+  border: 3px solid var(--text);
+  background: #0d0d15;
+  color: var(--gold);
+  padding: 8px 12px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.35rem;
+}
+
+.boss-area {
+  display: grid;
+  place-items: center;
+  margin: 18px 0;
+}
+
+.boss-card,
+.ticket {
+  width: min(100%, 360px);
+  border: 3px solid var(--text);
+  background: #301d3d;
+  box-shadow: 0 8px 0 var(--shadow);
+  padding: 18px;
+  text-align: center;
+}
+
+.boss-emoji {
+  display: block;
+  font-size: 3rem;
+}
+
+.boss-card strong,
+.boss-card span:last-child {
+  display: block;
+  margin-top: 8px;
+}
+
+.spell-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.spell {
+  background: var(--cyan);
+  min-width: 0;
+  font-size: clamp(0.75rem, 2.2vw, 1rem);
+}
+
+.spell.used {
+  background: #5c5a6d;
+  color: #d7d0dd;
+  cursor: default;
+}
+
+.finale {
+  text-align: center;
+}
+
+.finale .intro {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ticket {
+  margin: 0 auto 24px;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(255, 255, 255, 0.14) 8% 9%, transparent 9% 91%, rgba(255, 255, 255, 0.14) 91% 92%, transparent 92%),
+    linear-gradient(135deg, var(--hot), var(--gold));
+  color: #17121f;
+}
+
+.ticket strong {
+  display: block;
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.35;
+  margin: 12px 0;
+  font-size: clamp(1rem, 5vw, 1.65rem);
+}
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 10px;
+  }
+
+  .topbar {
+    grid-template-columns: 1fr;
+  }
+
+  .screen {
+    min-height: 68vh;
+  }
+
+  .mana-grid,
+  .spell-row {
+    grid-template-columns: 1fr;
+  }
+
+  .mana-card {
+    aspect-ratio: 3 / 1;
+  }
+}
