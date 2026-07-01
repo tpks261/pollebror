@@ -38,7 +38,12 @@
           En mystisk gave er blevet låst bag tre prøver. Saml mana, knæk runerne,
           og besejr den sidste boss før fødselsdagsportalen åbner.
         </p>
-        <button class="primary-btn" id="startButton" type="button">Start quest</button>
+        <div class="countdown-panel" id="countdownPanel" aria-live="polite">
+          <span class="label">Portalen åbner</span>
+          <strong id="countdownTime">--d --t --m --s</strong>
+          <small>Lørdag d. 4/7 kl. 15.00</small>
+        </div>
+        <button class="primary-btn" id="startButton" type="button" disabled>Quest låst</button>
       </section>
 
       <section class="screen hidden" id="manaScreen">

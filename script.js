@@ -16,12 +16,17 @@ const bossHp = document.querySelector("#bossHp");
 const duelFeedback = document.querySelector("#duelFeedback");
 const confettiCanvas = document.querySelector("#confettiCanvas");
 const confettiContext = confettiCanvas.getContext("2d");
+const startButton = document.querySelector("#startButton");
+const countdownTime = document.querySelector("#countdownTime");
+const countdownPanel = document.querySelector("#countdownPanel");
+const unlockAt = new Date("2026-07-04T15:00:00+02:00");
 
 let collectedMana = 0;
 let activeMana = 0;
 let bossHealth = 12;
 let confettiPieces = [];
 let confettiAnimation = null;
+let countdownTimer = null;
 
 function showScreen(name, stage) {
   Object.values(screens).forEach((screen) => screen.classList.add("hidden"));
@@ -30,6 +35,10 @@ function showScreen(name, stage) {
 }
 
 function startQuest() {
+  if (new Date() < unlockAt) {
+    return;
+  }
+
   collectedMana = 0;
   bossHealth = 12;
   manaCount.textContent = "0/5";
@@ -43,6 +52,30 @@ function startQuest() {
   });
   showScreen("mana", "1/3");
   renderManaGrid();
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const millisecondsLeft = unlockAt - now;
+
+  if (millisecondsLeft <= 0) {
+    countdownTime.textContent = "Portalen er åben";
+    countdownPanel.querySelector("small").textContent = "Quest unlocked. Tryk start, pøllebror.";
+    startButton.disabled = false;
+    startButton.textContent = "Start quest";
+    window.clearInterval(countdownTimer);
+    return;
+  }
+
+  const totalSeconds = Math.floor(millisecondsLeft / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  countdownTime.textContent = `${days}d ${hours}t ${minutes}m ${seconds}s`;
+  startButton.disabled = true;
+  startButton.textContent = "Quest låst";
 }
 
 function renderManaGrid() {
@@ -163,5 +196,8 @@ window.addEventListener("resize", () => {
   confettiCanvas.height = window.innerHeight;
 });
 
-document.querySelector("#startButton").addEventListener("click", startQuest);
+updateCountdown();
+countdownTimer = window.setInterval(updateCountdown, 1000);
+
+startButton.addEventListener("click", startQuest);
 document.querySelector("#restartButton").addEventListener("click", startQuest);

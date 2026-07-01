@@ -242,6 +242,45 @@ h2 {
   cursor: pointer;
 }
 
+.primary-btn:disabled {
+  color: #8a8175;
+  background: linear-gradient(180deg, #3d414c, #20242c 46%, #11141a 47%, #090b10);
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.countdown-panel {
+  width: min(100%, 430px);
+  margin: 22px 0 18px;
+  border: 4px solid var(--iron);
+  background:
+    linear-gradient(90deg, rgba(70, 215, 196, 0.12) 0 2px, transparent 2px 18px),
+    linear-gradient(180deg, #171b25, #090b10);
+  box-shadow:
+    inset 0 0 0 3px var(--shadow),
+    inset 0 0 0 6px rgba(240, 184, 75, 0.18),
+    0 6px 0 var(--shadow);
+  padding: 14px;
+}
+
+.countdown-panel strong {
+  display: block;
+  margin: 8px 0;
+  color: var(--gold);
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(1rem, 4vw, 1.8rem);
+  line-height: 1.35;
+  text-shadow:
+    3px 3px 0 #5b1d17,
+    5px 5px 0 var(--shadow);
+}
+
+.countdown-panel small {
+  display: block;
+  color: var(--muted);
+  font-weight: 900;
+}
+
 .primary-btn:active,
 .spell:active,
 .mana-card:active {
